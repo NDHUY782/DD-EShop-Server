@@ -1,0 +1,133 @@
+
+<% 
+	const collection = 'donHang'
+	const linkPrefix = systemConfig.prefixAdmin + `/${collection}/`
+%>
+
+<% include ./../../helper/status.ejs %>
+<% include ./../../helper/price.ejs %>
+<% include ./../../helper/inputNumber.ejs %>
+<% include ./../../helper/filter-status-invoice.ejs %>
+<% include ./../../helper/pagination.ejs %>
+<% include ./../../helper/highlight-char.ejs %>
+<% include ./../../helper/sort-list.ejs %>
+<% include ./../../helper/select-box-ajax.ejs %>
+
+<h3><%- locals.flash %></h3>
+<div class="row mb-2">
+    <div class="col-sm-6">
+        <h1 class="m-0">Danh mục <%= pageTitle%></h1>
+    </div>
+</div>
+<div class="card card-info card-outline">
+	<div class="card-header">
+		<h6 class="card-title">Search & Filter</h6>
+		<div class="card-tools">
+			<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fas fa-minus"></i></button>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="row justify-content-between">
+			<div class="mb-1">
+				<div class="btn-search">
+					<%- filterStatusInvoiceHelper(statusFilter, keyword, linkPrefix) %>
+				</div>
+			</div>
+			
+			<div class="mb-1">
+				<form action="<%= linkPrefix %>status/<%= currentStatus%>" method="get">
+					<div class="input-group">
+						<input type="text" class="form-control form-control-sm" name="keyword" value="<%= keyword%>"" placeholder="Search for..." style="min-width: 300px">
+						<div class="input-group-append">
+							<a type="button" class="btn btn-sm btn-danger"  href="<%= linkPrefix %>status/<%= currentStatus%>">Clear</a>
+							<button type="submit" class="btn btn-sm btn-info" id="btn-search">Search</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content -->
+<form action="<%= linkPrefix %>multipleAction" method="post" name="multipleForm" id = "multiForm">
+<div class="card card-info card-outline">
+	<div class="card-header">
+		<h4 class="card-title">List</h4>
+	</div>
+	<div class="card-body">
+		<!-- Control -->
+		<!-- <form action="" method="post" class="table-responsive" id="zt-form"> -->
+			<!-- List Content -->		
+			<table class="table table-bordered table-hover text-nowrap btn-table mb-0">
+				<thead>
+					<% if (!items.length) { %>
+						<tr><div style="text-align: center;"> Không tìm thấy dữ liệu </div></tr>
+					<% } else { %>
+						<tr>
+							<th class="text-center">
+								<div class="custom-control custom-checkbox">
+									<input class="custom-control-input cbAll" type="checkbox" id="check-all">
+									<label for="check-all" class="custom-control-label"></label>
+								</div>
+							</th>
+							<th class="text-center">#</a></th>
+							<%- sortListHelper(linkPrefix, 'Mã đơn hàng', 'maDonHang', sortField, sortType) %>
+							<th class="text-center">Name</a></th>
+							<th class="text-center">SĐT</a></th>
+							<th class="text-center">Tổng Tiền</a></th>
+							<%- sortListHelper(linkPrefix, 'Status', 'status', sortField, sortType) %>
+							<%- sortListHelper(linkPrefix, 'Ngày Đặt', 'NgayDat', sortField, sortType) %>
+							<th class="text-center">Action</th>
+						</tr>
+					<% } %>
+				</thead>
+				<tbody>
+						<% items.forEach((value,index) => { %>
+						<tr>
+							<td class="text-center">
+								<div class="custom-control custom-checkbox">
+									<input class="custom-control-input" type="checkbox" name="cid" id="check<%=index%>" value="<%= value.id%>">
+									<label for="check<%=index%>" class="custom-control-label"></label>
+								</div>
+							
+							</td>
+							<td class="text-center"><%= index+1 %></td>
+							<td class="text-center"><%- highlightHelper(value.maDonHang, keyword) %></td>
+							<td class="text-center"><%= value.user %></td>
+							<td class="text-center"><%= value.sdt %></td>
+							<td class="text-center"><%- priceHelper(value.tongTien) %></td>
+							<td class="text-center position-relative">
+								<%- selectBoxAjaxHelper('status', arrStatus, value.status, value.id, linkPrefix, "change-status") %>
+							</td>
+							<td class="text-center"><%- moment(value.NgayDat).format('DD/MM/YYYY') %></td>
+
+							<td class="text-center">
+								<a href="<%= linkPrefix %>form/<%= value.id%>" class="rounded-circle btn btn-sm btn-info " title="Edit">
+									<i class="fas fa-pencil-alt"></i>
+								</a>
+							</td>
+						</tr>
+						<% })  %>
+				</tbody>
+			</table>
+		<!-- </form> -->
+	</div>
+	<div class="col-lg-12">
+		<!--Pagination-->
+		<%- paginationHelper(pagination, currentStatus, keyword, linkPrefix) %>
+	    <!--Pagination-->
+	</div>
+</div>
+<form>
+
+<script>
+	function changeMultiStatus(status) {
+        let i = document.getElementById('inputHiddenAll').value = status;
+        document.getElementById('multiForm').submit();
+    }
+</script>	
+
+
+

@@ -1,0 +1,35 @@
+<% timePeriodHelper = (dateValue) => {
+    let xhtml = '';
+    
+    var date = dateValue.getTime()
+    var currentDate = new Date().getTime()
+
+    var diff = currentDate - date
+
+    var date = ''
+    if (0 <= diff && diff < 60*60*1000) {
+        let time = Math.abs((diff/(60*1000)).toFixed(0))
+        if (time < 1) time = 1
+        date = `${time} minute ago`
+    }
+    if (60*60*1000 <= diff && diff < 24*60*60*1000) {
+        let time = Math.abs((diff/(60*60*1000)).toFixed(0))
+        if (time < 1) time = 1
+        date = `${time} hours ago`
+    }
+    if (24*60*60*1000 <= diff && diff < 30*24*60*60*1000) {
+        let time = Math.abs((diff/(24*60*60*1000)).toFixed(0))
+        if (time < 1) time = 1
+        date = `${time} months ago`
+    }
+    if (30*24*60*60*1000 <= diff && diff < 12*30*24*60*60*1000) {
+        let time = Math.abs((diff/(30*24*60*60*1000)).toFixed(0))
+        if (time < 1) time = 1
+        date = `${time} years ago`
+    }
+
+
+    return `<span class="users-list-date">${date}</span>`;
+}
+
+%>

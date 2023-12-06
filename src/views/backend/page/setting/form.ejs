@@ -1,0 +1,258 @@
+<% include ./../../helper/image.ejs %>
+<% 
+	const collection = 'setting'
+	const linkPrefix = systemConfig.prefixAdmin + `/${collection}/`
+    const folderUpload = 'uploads/logo/'
+%>
+
+<h3><%- locals.flash %></h3>
+<div style="margin: 5%">
+    <div class="button_setting">
+        <button type="button" class="btn btn-default btn_setting" id="footer">
+            Footer
+        </button>
+        <button type="button" class="btn btn-primary btn_setting" id="header">
+            Header
+        </button>
+        <button type="button" class="btn btn-primary btn_setting" id="policy">
+            Policy
+        </button>
+        <button type="button" class="btn btn-primary btn_setting" id="award">
+            Award
+        </button>
+        <button type="button" class="btn btn-primary btn_setting" id="contact">
+            Contact
+        </button>
+        <button type="button" class="btn btn-primary btn_setting" id="introduce">
+            Introduce
+        </button>
+        <button type="button" class="btn btn-primary btn_setting" id="membership">
+            Membership
+        </button>
+        <button type="button" class="btn btn-primary btn_setting" id="return_policy">
+            Return Policy
+        </button>
+    </div>
+    <div class="card card-danger">
+        <form action= <%= linkPrefix + 'form'%> method="POST" class="mb-0" id ="form-category" enctype="multipart/form-data">
+            <div class="card-body" id = "footer">
+                    <div class="form-group-parent-left">
+                        <div class="form-parent">
+                            <h4><b>Social</b></h4>
+
+                            <div class="form-group form-group-sub" >
+                                <label for="facebook">Facebook</label>
+                                <input type="text" class="form-control" name="facebook" value="<%= items.facebook%>">
+                            </div>
+                            <div class="form-group form-group-sub">
+                                <label for="instagram">Instagram</label>
+                                <input type="text" class="form-control" name="instagram" value="<%= items.instagram%>">
+                            </div>
+                            <div class="form-group form-group-sub">
+                                <label for="youtube">Youtube</label>
+                                <input type="text" class="form-control" name="youtube" value="<%= items.youtube%>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-parent-right">
+                        <div class="form-parent">
+                            <h4><b>Khai Space</b></h4>
+
+                            <div class="form-group form-group-sub" >
+                                <label for="introduce">Giới Thiệu</label>
+                                <input type="text" class="form-control" name="introduce" value="<%= items.introduce%>">
+                            </div>
+                            <div class="form-group form-group-sub">
+                                <label for="group_member">Thẻ Hội Viên</label>
+                                <input type="text" class="form-control" name="group_member" value="<%= items.group_member%>">
+                            </div>
+                            <div class="form-group form-group-sub">
+                                <label for="refund_link">Chính sách đổi trả</label>
+                                <input type="text" class="form-control" name="refund_link" value="<%= items.refund_link%>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-parent-left">
+                        <div class="form-parent">
+                            <h4><b>Trending</b></h4>
+
+                            <div class="form-group form-group-sub" >
+                                <label for="product_trend">Sản Phẩm Mới</label>
+                                <input type="text" class="form-control" name="product_trend" value="<%= items.product_trend%>">
+                            </div>
+                            <div class="form-group form-group-sub">
+                                <label for="design_trend">Phong cách thiết kế mới</label>
+                                <input type="text" class="form-control" name="design_trend" value="<%= items.design_trend%>">
+                            </div>
+                            <div class="form-group form-group-sub">
+                                <label for="news">Chuyện của KHAI SPACE</label>
+                                <input type="text" class="form-control" name="news" value="<%= items.news%>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-parent-right">
+                        <div class="form-parent">
+                            <h4><b>Contact us</b></h4>
+
+                            <div class="form-group form-group-sub" >
+                                <label for="introduce">Mô Tả Contact</label>
+                                <textarea name="description_contact" rows="2" cols="53"><%= items.description_contact%></textarea>
+                            </div>
+                            <div class="form-group form-group-sub">
+                                <label for="mail">Email contact</label>
+                                <input type="text" class="form-control" name="mail" value="<%= items.mail%>">
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="card-body" id = "policy" hidden="hidden">
+                <div class="form-group" >
+                    <label for="policy_1">Tiêu chuẩn 1</label>
+                    <input type="text" class="form-control" name="policy_1" value="<%= items.policy_1%>">
+                </div>
+                <div class="form-group">
+                    <label for="content">Mô tả</label>
+                    <textarea name="description_policy_1" rows="3" cols="145"><%= items.description_policy_1%></textarea>
+                </div>
+                <div class="form-group" >
+                    <label for="policy_2">Tiêu chuẩn 2</label>
+                    <input type="text" class="form-control" name="policy_2" value="<%= items.policy_2%>">
+                </div>
+                <div class="form-group">
+                    <label for="description_policy_2">Mô tả</label>
+                    <textarea name="description_policy_2" rows="3" cols="145"><%= items.description_policy_2%></textarea>
+                </div>
+                <div class="form-group" >
+                    <label for="policy_3">Tiêu chuẩn 3</label>
+                    <input type="text" class="form-control" name="policy_3" value="<%= items.policy_3%>">
+                </div>
+                <div class="form-group">
+                    <label for="description_policy_3">Mô tả</label>
+                    <textarea name="description_policy_3" rows="3" cols="145"><%= items.description_policy_3%></textarea>
+                </div>
+            </div>
+
+            <div class="card-body" id = "award" hidden="hidden">
+                <div class="form-group" >
+                    <label for="title_award">Title Award</label>
+                    <input type="text" class="form-control" name="title_award" value="<%= items.title_award%>">
+                </div>
+                <div class="form-group" >
+                    <label for="award_1">Tiêu chuẩn 1</label>
+                    <input type="text" class="form-control" name="award_1" value="<%= items.award_1%>">
+                </div>
+                <div class="form-group">
+                    <label for="content">Mô tả</label>
+                    <textarea name="description_award_1" rows="3" cols="145"><%= items.description_award_1%></textarea>
+                </div>
+                <div class="form-group" >
+                    <label for="award_2">Tiêu chuẩn 2</label>
+                    <input type="text" class="form-control" name="award_2" value="<%= items.award_2%>">
+                </div>
+                <div class="form-group">
+                    <label for="description_award_2">Mô tả</label>
+                    <textarea name="description_award_2" rows="3" cols="145"><%= items.description_award_2%></textarea>
+                </div>
+                <div class="form-group" >
+                    <label for="award_3">Tiêu chuẩn 3</label>
+                    <input type="text" class="form-control" name="award_3" value="<%= items.award_3%>">
+                </div>
+                <div class="form-group">
+                    <label for="description_award_3">Mô tả</label>
+                    <textarea name="description_award_3" rows="3" cols="145"><%= items.description_award_3%></textarea>
+                </div>
+            </div>
+
+            <div class="card-body" id = "header" hidden="hidden">
+                <div class="form-group">
+                    <label for="name">Địa điểm free ship</label>
+                    <input type="text" class="form-control" name="location" value="<%= items.location%>">
+                </div>
+                <div class="form-group">
+                    <label for="name">Thời gian hoàn trả hàng</label>
+                    <input type="text" class="form-control" name="refund_time" value="<%= items.refund_time%>">
+                </div>
+                <div class="form-group">
+                    <label for="name">Thông tin hỗ trợ</label>
+                    <input type="text" class="form-control" name="call_us" value="<%= items.call_us%>">
+                </div>
+                <div class="form-group">
+                    <label for="name">Phone</label>
+                    <input type="text" class="form-control" name="phone" value="<%= items.phone%>">
+                </div>
+                <div class="form-group">
+                    <label for="logo">Logo</label>
+                    <input type="file" id="logo" name="logo" class="form-control form-control-sm" value="abc" style="padding-bottom: 2rem">
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <%- imageHelper(folderUpload, items.logo, 'img_Form') %>
+                </div>
+                <input type="hidden" name="image_old" value="<%= items.logo%>" >
+                <input type="hidden" name="id" value="<%= items.id%>" >
+            </div>
+
+            <div class="card-body" id = "contact" hidden="hidden">
+                <div class="form-group" >
+                    <label for="from">From</label>
+                    <input type="text" class="form-control" name="from" value="<%= items.from%>">
+                </div>
+                <div class="form-group" >
+                    <label for="pass">Pass</label>
+                    <input type="text" class="form-control" name="pass" value="<%= items.pass%>">
+                </div>
+                <div class="form-group" >
+                    <label for="cc">Cc</label>
+                    <input type="text" class="form-control" name="cc" value="<%= items.cc%>">
+                </div>
+                <div class="form-group" >
+                    <label for="subject">Tiêu đề</label>
+                    <input type="text" class="form-control" name="subject" value="<%= items.subject%>">
+                </div>
+                <div class="form-group">
+                    <label for="contentEmail">Nội Dung</label>
+                    <textarea name="contentEmail" rows="3" cols="145"><%= items.contentEmail%></textarea>
+                </div>
+            </div>
+
+            <div class="card-body" id = "introduce" hidden="hidden">
+                <div class="form-group">
+                    <label for="Introduce">Nội dung</label>
+                    <textarea name="Introduce" rows="3" cols="145"><%= items.Introduce%></textarea>
+                </div>
+            </div>
+
+            <div class="card-body" id = "membership" hidden="hidden">
+                <div class="form-group">
+                    <label for="Membership">Nội dung</label>
+                    <textarea name="Membership" rows="3" cols="145"><%= items.Membership%></textarea>
+                </div>
+            </div>
+
+            <div class="card-body" id = "return_policy" hidden="hidden">
+                <div class="form-group">
+                    <label for="Return_Policy">Nội dung</label>
+                    <textarea name="Return_Policy" rows="3" cols="145"><%= items.Return_Policy%></textarea>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="button_submit col-12 col-sm-8 offset-sm-2">
+                    <button type="submit" class="btn btn-sm btn-success mr-1">
+                        Submit</button>
+                    <a href='#' class="btn btn-sm btn-danger mr-1">
+                        Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    CKEDITOR.replace('contentEmail');
+    CKEDITOR.replace('Introduce');
+    CKEDITOR.replace('Membership');
+    CKEDITOR.replace('Return_Policy');
+</script>

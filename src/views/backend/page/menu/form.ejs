@@ -1,0 +1,52 @@
+
+<% include ./../../helper/select-box-link-menu.ejs %>
+
+<% 
+	const collection = 'menu'
+	const linkPrefix = systemConfig.prefixAdmin + `/${collection}/`
+%>
+
+<h3><%- locals.flash %></h3>
+
+<div style="margin: 5%">
+    <h1><%= pageTitle%></h1>
+    <div class="card card-danger">
+        <form action= <%= linkPrefix + 'form'%> method="POST" class="mb-0" id ="form-category">
+            <div class="card-body card-menu">
+                    <div class="form-group" >
+                        <label for="menu">Name Menu</label>
+                        <input type="text" class="form-control" name="name" id="name" value="<%= items.name%>">
+                    </div>
+                    <div class="form-group" >
+                        <label for="menu">Status</label>
+                        <select id="status" name="status" class="custom-select custom-select-sm">
+                            <option value="novalue">Choose Status</option>
+                            <option value="active" <%=(items.status=="active" ? 'selected="selected"' : '' ) %> >
+                                Active</option>
+                            <option value="inactive" <%=(items.status=="inactive" ? 'selected="selected"' : '' ) %> >
+                                Inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="link_menu" >
+                        <label for="link">Link</label>
+                        <input type="text" class="form-control" name="link" id="link" value="<%= items.link%>">
+                    </div>
+                    <p>Vui lòng lựa chọn loại Menu:</p>
+                        <input type="radio" id="parent" name="parent" <%=(items.parent=="true" ? 'checked' : '' ) %> value="true">
+                        <label for="html">True</label><br>
+                        <input type="radio" id="parent" name="parent" <%=(items.parent=="false" ? 'checked' : '' ) %> value="false">
+                        <label for="css">False</label><br>  
+            </div>
+            <input type="hidden" name="id" value="<%= items.id%>" >
+            <div class="card-footer">
+                <div class="button_submit col-12 col-sm-8 offset-sm-2">
+                    <button type="submit" class="btn btn-sm btn-success mr-1">
+                        Submit</button>
+                    <a href='dhuy782/menu/' class="btn btn-sm btn-danger mr-1">
+                        Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,11 @@
+<% priceHelper = (price) => {
+    let USDollar = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
+    let newprice = USDollar.format(price)
+
+    return newprice;
+}
+
+%>

@@ -1,0 +1,99 @@
+<% 
+    const collection= "account" 
+    const linkPrefix= systemConfig.prefixAdmin + `/${collection}/`   
+%>
+
+<% include ./../../helper/select-box-default.ejs %>
+    <div class="card card-info card-outline">
+        <form action= <%= linkPrefix + 'form'%> method="POST" class="mb-0" id ="form-account">
+            <div class="card-body">
+                <h1>
+                    <%= pageTitle%>
+                </h1>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Tên Đăng Nhập:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" id="username" name="username" class="form-control form-control-sm" value="<%= items.username%>">
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="category" class="col-sm-2 col-form-label text-sm-right">Role</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <%- selectBoxDefaultHelper('role', categoryAccounts, items.role) %>
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Mật Khẩu:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="password" id="password" name="password" class="form-control form-control-sm" value="<%= items.password%>">
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Họ Tên:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" id="hoten" name="hoten" class="form-control form-control-sm" value="<%= items.hoten%>">
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Số Điện Thoại:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" id="phone" name="phone" class="form-control form-control-sm" value="<%= items.phone%>">
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Email:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" id="email" name="email" class="form-control form-control-sm" value="<%= items.email%>">
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="status" class="col-sm-2 col-form-label text-sm-right">Status</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <select id="status" name="status" class="custom-select custom-select-sm">
+                            <option value="novalue">Choose Status</option>
+                            <option value="active" <%=(items.status=="active" ? 'selected="selected"' : '' ) %> >
+                                Active</option>
+                            <option value="inactive" <%=(items.status=="inactive" ? 'selected="selected"' : '' ) %> >
+                                Inactive</option>
+                        </select>
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <input type="hidden" name="id" value="<%= items.id%>" >
+            </div>
+            <div class="card-footer">
+                <div class="col-12 col-sm-8 offset-sm-2">
+                    <button type="submit" class="btn btn-sm btn-success mr-1">
+                        Submit</button>
+                    <a href="/dhuy782/account" class="btn btn-sm btn-danger mr-1">
+                        Cancel</a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <!-- <script>
+        CKEDITOR.replace('content');
+    </script> -->
+    <!--Custom Validator-->
+    <!-- <script src="/backend/js/customValidator.js"></script> 
+    <script>
+        Validator({
+            form: '#form-account',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#name'),
+                Validator.minLength('#name', 6, 'Name phải có tối thiểu 6 ký tự'),
+                Validator.isRequired('#ordering'),
+                Validator.minMaxInt('#ordering', 1, 100, 'Ordering phải số nguyên và có giá trị từ 1 đến 100'),
+                Validator.isSelected('#status', 'Vui lòng chọn trường status'),
+            ],
+        });
+    </script> -->

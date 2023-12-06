@@ -1,0 +1,20 @@
+
+<% 
+    checkBoxHelper = (id, arrCheck, linkPrefix, value_input) => {
+        let xhtmlStatus = '';
+        let link = `${linkPrefix}change-checkbox/` + id + "/";
+        let checked = '';
+        arrCheck.forEach((item) => {
+            if (item === value_input) {
+                checked = `checked="checked"`
+            }
+        })
+
+        xhtmlStatus = `<a><input id="${value_input}" onchange="changeCheckBox('${link}', '${value_input}')" type="checkbox" id="vehicle1" name="arrCheck" value="${value_input}" ${checked}></a>`
+
+        return xhtmlStatus;
+
+    }    
+%>
+
+

@@ -1,0 +1,17 @@
+
+<% 
+    numberHelper = (id, ordering, linkPrefix, collection = 'Ordering') => {
+        let xhtmlStatus = '';
+        let link = `${linkPrefix}change-number/` + id + "/";
+        let min = 0
+        let max = 100000000
+        if (collection === 'Discount') {
+            max = 100
+        }
+        xhtmlStatus = `<a><input id="input${collection}-${id}" type="number" onchange="changeOrdering('${link}', '${id}', '${collection}')" name="items-ordering" value="${ordering}" class="text-center" min="${min}" max="${max}"></a>`
+
+        return xhtmlStatus;
+
+    }    
+%>
+

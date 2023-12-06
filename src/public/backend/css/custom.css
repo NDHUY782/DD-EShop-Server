@@ -1,0 +1,127 @@
+.img_List {
+    height: 40px;
+}
+
+.img_Form {
+    height: 100px;
+    padding-left: 25%;
+}  
+
+.img_List img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    transition: all 5s;
+}
+
+/*Setting*/
+button.btn_setting{
+  width: 115px;
+}
+
+div.button_setting{
+  margin-top: 5% ;
+  margin: 0 auto;
+  width: 1000px;
+  text-align:center;
+}
+
+div.button_submit{
+  margin-left:0%;
+}
+
+
+/*Error*/
+button.btn_setting_error{
+  width: 180px;
+  border-radius: 15px;
+  background-color: #434343;
+}
+
+button.btn_setting_error:hover{
+  background-color: #7d7878;
+  border-color: aliceblue;
+}
+
+button.btn_setting_error > a {
+  color: aliceblue;
+}
+/*Error*/
+
+/*Table in List Article*/
+
+table.my_table{
+  width: 100%;
+}
+
+table.my_table th.name{
+    height: 70px;
+}
+
+.form-group-sub{
+  margin-left: 5%;
+}
+
+.form-group-parent-left{
+  float: left;
+  background-color: rgb(215, 215, 210);
+  margin: 0 0 3% 0;
+  width: 45%;
+}
+
+.form-group-parent-right{
+  float: right;
+  background-color: rgb(241, 241, 236);
+  margin: 0 3% 3% 0;
+  width: 45%;
+}
+
+.form-parent{
+  margin: 6%;
+}
+
+/* menu */
+  /* menu form */
+.select_link{
+  width: 20%;
+  margin-left: 40%;
+}
+  /*end menu form*/
+
+.dropzone .dz-preview .dz-image img {
+  width: 100% !important;
+}
+
+/*Loai Giam Gia start*/
+.loaiGiamGia{
+  margin-left: 4%;
+}
+
+.inputloaiGiamGia{
+  float: right;
+  margin-right: 30%;
+  width: 30%;
+}
+/*Loai Giam Gia end*/
+
+/*---Form Dashboard---*/
+form.form-dashboard{
+  padding-left: 7%;
+}
+
+form.form-dashboard > input{
+  width: 60%;
+  margin-right: 5px;
+}
+
+form.form-dashboard > button{
+  border-radius: 30px;
+}
+/*---Form Dashboard---*/
+
+.center{
+  text-align: center !important;
+}

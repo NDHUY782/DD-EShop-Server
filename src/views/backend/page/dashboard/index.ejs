@@ -1,0 +1,223 @@
+<% include ./../../helper/dashboard.ejs %>
+    <% include ./../../helper/time-period.ejs %>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <%- dashboardHelper("bg-info", items.category, "Blog Category" , "ion-bag" , "dhuy782/category" ) %>
+                    <%- dashboardHelper("bg-success", items.article, "Blog Article" , "ion-stats-bars", "dhuy782/article" ) %>
+                    <%- dashboardHelper("bg-warning", items.categoryProduct, "Product Category", "ion-pie-graph" , "dhuy782/category_product" ) %>
+                    <%- dashboardHelper("bg-danger", items.product, "Product" , "ion-ios-cart-outline", "dhuy782/product" ) %>
+                    <%- dashboardHelper("bg-primary", items.categoryAccount, "Account Category", "ion-clipboard" , "dhuy782/category_account" ) %>
+                    <%- dashboardHelper("bg-dark", items.authen, "Account" , "ion-person-add", "dhuy782/account" ) %>
+                    <%- dashboardHelper("bg-info", items.slider, "Slider" , "ion-bag", "dhuy782/slider" ) %>
+                    <%- dashboardHelper("bg-success", items.contact, "Contact", "ion-stats-bars" , "dhuy782/contact" ) %>
+                    <%- dashboardHelper("bg-warning", items.menu, "Menu", "ion-pie-graph" , "dhuy782/menu" ) %>
+                    <%- dashboardHelper("bg-danger", items.setting, "Setting", "ion-ios-cart-outline" , "dhuy782/setting" ) %>
+                    <%- dashboardHelper("bg-primary",items.phiVanChuyen, "Phí Vận Chuyển" , "ion-clipboard", "dhuy782/phiVanChuyen" ) %>
+                    <%- dashboardHelper("bg-dark",items.maGiamGia, "Mã Giảm Giá" , "ion-person-add", "dhuy782/maGiamGia" ) %>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header border-transparent">
+                            <h3 class="card-title">Top 10 đơn hàng gần nhất</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã Đơn Hàng</th>
+                                            <th>Khách Hàng</th>
+                                            <th>Trạng Thái</th>
+                                            <th>Tổng Tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% items.donHang.forEach(value=> { %>
+                                            <tr>
+                                                <td><a href="pages/examples/invoice.html">
+                                                        <%= value.id%>
+                                                    </a></td>
+                                                <td>
+                                                    <%= value.user%>
+                                                </td>
+
+                                                <% if(value.status==="cho-lay-hang" ) { %>
+                                                    <td>
+                                                        <span class="badge badge-info">
+                                                            <%= value.status%>
+                                                        </span>
+                                                    </td>
+                                                <% } else if (value.status==="van-chuyen" ) { %>
+                                                    <td>
+                                                        <span class="badge badge-primary">
+                                                             <%= value.status%>
+                                                        </span>
+                                                    </td>
+                                                <% } else if (value.status==="hoan-thanh" ) { %>
+                                                    <td>
+                                                        <span class="badge badge-success">
+                                                            <%= value.status%>
+                                                        </span>
+                                                    </td>
+                                                <% } else if (value.status==="da-huy" ) { %>
+                                                    <td>
+                                                        <span class="badge badge-danger">
+                                                            <%= value.status%>
+                                                        </span>
+                                                    </td>
+                                                <% } %>
+                                                    <td>
+                                                        <div class="sparkbar" data-color="#f56954" data-height="20">
+                                                            <%= value.tongTien%>
+                                                        </div>
+                                                    </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <a href="dhuy782/donHang" class="btn btn-sm btn-secondary float-right">Xem tất cả đơn hàng</a>
+                        </div>
+                        <!-- /.card-footer -->
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <!-- USERS LIST -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Top 10 User hoạt động gần nhất</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <ul class="users-list clearfix">
+                                <% items.showAccount.forEach(value=> { %>
+                                    <li>
+                                        <img src="uploads/noAvatar.jpg" alt="User Image">
+                                        <a class="users-list-name" href="#">
+                                            <%= value.username%>
+                                        </a>
+                                        <%- timePeriodHelper(value.lastDateLogin)%>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                            <!-- /.users-list -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer text-center">
+                            <a href="dhuy782/account/">Xem tất cả các User</a>
+                        </div>
+                        <!-- /.card-footer -->
+                    </div>
+                    <!--/.card -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">View User</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- /.d-flex -->
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <p class="text-warning text-xl">
+                                    <i class="ion ion-ios-cart-outline"></i>
+                                </p>
+
+                                <form class="form-dashboard" name="userInfoProduct" method="post"  action="dhuy782/maGiamGia">
+                                    <input type="text" name="maGiamGiaProduct" >
+                                    <!-- <input type="text" name="userInfoProduct" id="userInfoProduct" value="<%= JSON.stringify(arrUserInfor.product)%>" hidden> -->
+                                    <button type="submit">
+                                        <i class="fas fa-comments"></i>
+                                    </button>
+                                </form>
+
+                                <p class="d-flex flex-column text-right">
+                                    <span class="font-weight-bold" id="viewProduct">
+                                        <i class="ion ion-ios-people-outline"></i> <%= arrUserInfor.product.length%>
+                                    </span>
+                                    <span class="text-muted">Product</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+                            <div class="d-flex justify-content-between align-items-center mb-0">
+                                <p class="text-danger text-xl">
+                                    <i class="ion ion-clipboard"></i>
+                                </p>
+                                <form class="form-dashboard" name="userInfoBlog" method="post" action="dhuy782/maGiamGia">
+                                    <input type="text" name="maGiamGiaBlog" >
+                                    <!-- <input type="text" name="userInfoBlog" id="userInfoBlog" value="<%= JSON.stringify(arrUserInfor.blog)%>" hidden> -->
+                                    <button type="submit">
+                                        <i class="fas fa-comments"></i>
+                                    </button>
+                                </form>
+
+                                <p class="d-flex flex-column text-right">
+                                    <span class="font-weight-bold" id="viewBlog">
+                                        <i class="ion ion-ios-people-outline"></i> <%= arrUserInfor.blog.length%>
+                                    </span>
+                                    <span class="text-muted">Blog</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script type="text/javascript">
+            var socket = io.connect()
+
+            socket.on('arrUser', (data) => {
+                let viewBlog = document.getElementById("viewBlog");
+                viewBlog.innerHTML = ''
+                viewBlog.innerHTML = data.blog.length
+                // document.getElementById("userInfoBlog").setAttribute('value', JSON.stringify(data.blog));
+                
+                
+                let viewProduct = document.getElementById("viewProduct");
+                viewProduct.innerHTML = ''
+                viewProduct.innerHTML = data.product.length
+                // document.getElementById("userInfoProduct").setAttribute('value', JSON.stringify(data.product));
+            })
+
+            $('form[name=userInfoBlog]').on( "submit", function( event ) {
+                event.preventDefault();
+                let code = $('input[name=maGiamGiaBlog]').val()
+                $('input[name=maGiamGiaBlog]').val("")
+                socket.emit('sendDiscount', 'blog', code);
+            });
+
+            $('form[name=userInfoProduct]').on( "submit", function( event ) {
+                event.preventDefault();
+                let code = $('input[name=maGiamGiaProduct]').val()
+                $('input[name=maGiamGiaProduct]').val("")
+                socket.emit('sendDiscount', 'product', code);
+            });
+        </script>

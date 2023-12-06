@@ -1,0 +1,14 @@
+
+<% shortNameHelper = (name) => {
+    let arr_name =  name.split(" ")
+    let short_name = ''
+    if (arr_name.length >1) {
+        short_name = arr_name[0] + ' ' + arr_name[1] + ' ' + arr_name[2] + '[...]'
+    } else {
+        short_name = arr_name[0]
+    }
+
+    return short_name
+}
+
+%>

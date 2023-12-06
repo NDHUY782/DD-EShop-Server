@@ -1,0 +1,82 @@
+
+<% include ./../../helper/select-box-link-menu.ejs %>
+
+<% 
+	const collection = 'menu'
+	const linkPrefix = systemConfig.prefixAdmin + `/${collection}/`
+%>
+
+<h3><%- locals.flash %></h3>
+
+<div style="margin: 5%">
+    <h1><%= pageTitle%></h1>
+    <div class="button_setting">
+        <button type="button" class="btn btn-primary btn_menu" id="add_menu">
+            Add Menu Child
+        </button>
+        <button type="button" class="btn btn-primary btn_menu" id="back">
+            Back
+        </button>
+        <button type="button" class="btn btn-primary btn_menu" id="cancel">
+            Cancel
+        </button>
+    </div>
+    <div class="card card-danger">
+        <form action= <%= linkPrefix + 'form'%> method="POST" class="mb-0" id ="form-category">
+            <div class="card-body card-menu">
+                    <div class="form-group" >
+                        <label for="menu">Name Menu</label>
+                        <input type="text" class="form-control" name="menu" id="menu" value="<%= items.name%>">
+                    </div>
+                    <div class="form-group" >
+                        <label for="menu">Status</label>
+                        <select id="status" name="status" class="custom-select custom-select-sm">
+                            <option value="novalue">Choose Status</option>
+                            <option value="active" <%=(items.status=="active" ? 'selected="selected"' : '' ) %> >
+                                Active</option>
+                            <option value="inactive" <%=(items.status=="inactive" ? 'selected="selected"' : '' ) %> >
+                                Inactive</option>
+                        </select>
+                    </div>
+                    <% if (items.id === undefined) { %>
+                        <div class="form-group" id="link_menu" >
+                            <label for="link">Link</label>
+                            <input type="text" class="form-control" name="link" id="link" value="">
+                        </div>
+                    <% } else { %>
+                        <% if (items.parent === "false") { %>
+                            <div class="form-group" id="link_menu" >
+                                <label for="link">Link</label>
+                                <input type="text" class="form-control" name="link" id="link" value="<%= items.link%>">
+                            </div>
+                        <% } else { %>
+                            <% items.child.forEach((values,index) => { %>
+                                <div class="card-body" id="menu_child<%= index+1%>">
+                                    <div class="form-group" >
+                                        <label for="menu_child">Name Menu Child</label>
+                                        <input type="text" class="form-control" name="menu_child" value="<%= values.name_child%>">
+                                    </div>
+                                    <div class="form-group" >
+                                        <label for="link_child">Link Child</label>
+                                        <input type="text" class="form-control" name="link_child"  value="<%= values.link_child%>">
+                                    </div>
+                                    <input type="hidden" name="parent" value="true">
+                                </div>
+                            <% }) %>    
+                        <% } %>
+                        <input type="hidden" class="menu_child_count" value="<%= items.child.length%>">    
+                    <% } %>    
+            </div>
+            <input type="hidden" name="id" value="<%= items.id%>" >
+            <div class="card-footer">
+                <div class="button_submit col-12 col-sm-8 offset-sm-2">
+                    <button type="submit" class="btn btn-sm btn-success mr-1">
+                        Submit</button>
+                    <a href='dhuy782/menu/' class="btn btn-sm btn-danger mr-1">
+                        Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

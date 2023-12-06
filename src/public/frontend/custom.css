@@ -1,0 +1,179 @@
+/* slider */
+.blog_slider{
+    min-height: 10vh !important;
+}
+
+.blog_slider .title_breadcrumb{
+    padding: 20% 0px 0px 75%;
+}
+
+.blog_slider .title_breadcrumb a{
+    color: black;
+}
+
+.title-slide{
+    margin-top: 8%;
+}
+
+/* Blog */
+.blog{
+    display: inline-block !important;
+}
+
+.blog_side{
+    float: left;
+    margin-left: 2%;
+    margin-top: 4rem !important;
+    width: 20%;
+    background-color: rgba(189, 189, 180, 0.2);
+}
+
+.blog_content{
+    float: right;
+    width: 70%;
+    margin: 3% 4%;
+}
+
+.blog_category_sub{
+    margin: 0% 0% 10% 5%;
+}
+
+.blog_category_sub span{
+    color: black;
+}
+
+.blog_category .current span{
+    color: #1ABC9C;
+}
+
+.blog_category{
+    margin: 10%;
+}
+
+.blog_category_title{
+    margin: 5% 0px 0px 5%;
+}
+
+.title_product{
+    margin: 0 0 5px 0;
+}
+
+.des_product{
+    margin: 0 0 5px 0;
+}
+
+/* Blog Detail */
+.blog_detail{
+    margin: 3% 5% 10% 5%;
+}
+
+
+.show {display: block;}
+
+/* Content artile */
+
+.content-middle{
+    width: 70%;
+    margin-top: 5%;
+}
+
+/* Cart */
+.btn-light:hover {
+    background-color: #1ABC9C;
+}
+
+u:hover {
+    color: #1ABC9C;
+    cursor: pointer;
+}
+/*--search--*/
+
+/*--notify--*/
+.text-red{
+    color: red;
+}
+
+/*--button Đơn Hàng--*/
+.donHang {
+    margin-left: 30%;
+}
+
+/*-- input--*/
+input[class^="filter"]{
+    margin-right: 15px;
+}
+
+/*-- nganhang--*/
+label[class^="nganhang"]{
+    font-size: 120%;
+}
+
+/*-- checkout invoice--*/
+div[class^="table-invoice"]{
+    margin: 0 10%;
+    background-color: rgba(231, 231, 231, 0.4);
+    border-radius: 25px;
+}
+
+div[class^="info-invoice"]{
+    margin: 0 10%;
+    background-color: rgba(146 ,211 ,213 ,0.1);
+    border-radius: 25px;
+}
+
+div[class^="info-invoice"] > .col-mb-30 {
+    margin: 0 5%;
+}
+
+div[class^="info-invoice"] > .col-mb-30  > .col-lg-6{
+    margin-top: 5%;
+}
+
+.bnt-search{
+    background-color: #b8ded7;
+    border-radius: 3px;
+    margin: 3px;
+    padding: 3px;
+}
+
+.bnt-search:hover{
+    background-color: #9acec5;
+}
+
+.alertify-notifier{
+    top: 15% !important
+}
+
+div.filter{
+    background-color: #e7e7e7;
+    border-radius: 5px;
+}
+
+/*--Error--*/
+
+button.btn_setting_error{
+    width: 180px;
+    border-radius: 15px;
+    background-color: #434343;
+  }
+  
+button.btn_setting_error:hover{
+    background-color: #7d7878;
+    border-color: aliceblue;
+}
+  
+button.btn_setting_error > a {
+    color: aliceblue;
+}
+  
+div.button_setting{
+    margin-top: 5% !important;
+    margin: 0 auto;
+    width: 1000px;
+    text-align:center;
+}
+
+
+
+
+

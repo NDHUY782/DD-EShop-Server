@@ -1,0 +1,101 @@
+<% 
+    const collection= "maGiamGia" 
+    const linkPrefix= systemConfig.prefixAdmin + `/${collection}/`   
+%>
+    <div class="card card-info card-outline">
+        <form action= <%= linkPrefix + 'form'%> method="POST" class="mb-0" id ="form-maGiamGia">
+            <div class="card-body">
+                <h1>
+                    <%= pageTitle%>
+                </h1>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Mã Giảm Giá</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" id="name" name="name" class="form-control form-control-sm" value="<%= items.name%>">
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Giới Hạn Tiền Giảm</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="number" id="gioi_han_tien_giam" name="gioi_han_tien_giam" class="form-control form-control-sm" value="<%= items.gioi_han_tien_giam%>">
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Loại</label>
+                    <div class="col-xs-6 col-sm-4 loaiGiamGia">
+                        <input type="radio" class="inputRadio" name="loai" <%=(items.loai == true ? 'checked' : '' ) %>  value="true">
+                        <label for="html">Phần Trăm</label>
+                        <input type="number" id="phamtram" name="phamtram" class="form-control form-control-sm inputloaiGiamGia" value="<%= items.phamtram%>" min="0" max="100">
+                    </div>
+                    <div class="col-xs-6 col-sm-4 loaiGiamGia">
+                        <input type="radio" class="inputRadio" name="loai" <%=(items.loai== false ? 'checked' : '' ) %> value="false">
+                        <label for="css">Số Tiền</label>
+                        <input type="number" id="sotien" name="sotien" class="form-control form-control-sm inputloaiGiamGia" value="<%= items.sotien%>" hidden>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Số lượng</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="number" id="quantity" name="quantity" class="form-control form-control-sm" value="<%= items.quantity%>">
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Ngày bắt đầu:</label>
+                    <div class="col-xs-4 col-sm-3 ">
+                        <input onmouseover="showDate()" type="text" name="ngaybatdau" class="datepicker" value="<%- moment(items.ngaybatdau).format('MM/DD/YYYY') %>">
+                    </div>
+                    <label for="name" class="col-sm-2 col-form-label text-sm-right required">Ngày kết thúc:</label>
+                    <div class="col-xs-4 col-sm-3 ">
+                        <input onmouseover="showDate()" type="text" name="ngayketthuc" class="datepicker" value="<%- moment(items.ngayketthuc).format('MM/DD/YYYY') %>">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="status" class="col-sm-2 col-form-label text-sm-right">Status</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <select id="status" name="status" class="custom-select custom-select-sm">
+                            <option value="novalue">Choose Status</option>
+                            <option value="active" <%=(items.status=="active" ? 'selected="selected"' : '' ) %> >
+                                Active</option>
+                            <option value="inactive" <%=(items.status=="inactive" ? 'selected="selected"' : '' ) %> >
+                                Inactive</option>
+                        </select>
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <input type="hidden" name="id" value="<%= items.id%>" >
+            </div>
+            <div class="card-footer">
+                <div class="col-12 col-sm-8 offset-sm-2">
+                    <button type="submit" class="btn btn-sm btn-success mr-1">
+                        Submit</button>
+                    <a href="/dhuy782/maGiamGia" class="btn btn-sm btn-danger mr-1">
+                        Cancel</a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <!--Custom Validator-->
+    <script src="/backend/js/customValidator.js"></script> 
+    <script>
+        Validator({
+            form: '#form-maGiamGia',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#name'),
+                Validator.minLength('#name', 4, 'Name phải có tối thiểu 6 ký tự'),
+            ],
+        });
+    </script>
+    <script>
+        const showDate = () => {
+            // $( ".datepicker" ).datepicker({dateFormat: 'dd/mm/yy'});
+            $( ".datepicker" ).datepicker();
+        } 
+    </script>
