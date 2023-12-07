@@ -76,6 +76,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="category" class="col-sm-2 col-form-label text-sm-right">Group Category</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <%- selectBoxDefaultHelper('group', groupItems, items.id_group_category) %>
+                        <span class="form-message" style = "color: red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="content_ck" class="col-sm-2 col-form-label text-sm-right required">Content</label>
                     <textarea name="content" rows="2" id="content"><%= items.content%></textarea>
                     <span class="form-message" style = "color: red;"></span>

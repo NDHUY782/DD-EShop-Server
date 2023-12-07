@@ -26,7 +26,7 @@ module.exports = {
 
         let pagination = {
             totalItem       : 1,
-            totalItemPerPage: 5,
+            totalItemPerPage: 999999999999,
             currentPage     : parseInt(paramsHelpers.getParam(req.query, 'page', 1)),
             pageRange       : 3
         }
@@ -67,7 +67,7 @@ module.exports = {
 
         let pagination = {
             totalItem       : 1,
-            totalItemPerPage: 5,
+            totalItemPerPage: 9999999999,
             currentPage     : parseInt(paramsHelpers.getParam(req.query, 'page', 1)),
             pageRange       : 3
         }
@@ -218,7 +218,6 @@ module.exports = {
                     res.redirect(`${linkPrefix}`)
                 } 
                 else { // add
-                    item.avatar = req.files[0].filename
                     item.id_category = item.category
                     item.created = {
                         user_id: 0,

@@ -94,7 +94,6 @@
 							</th>
 							<th class="text-center">#</a></th>
 							<%- sortListHelper(linkPrefix, 'Name', 'name', sortField, sortType) %>
-							<th class="text-center">Avatar</a></th>
 							<%- sortListHelper(linkPrefix, 'Status', 'status', sortField, sortType) %>
 							<%- sortListHelper(linkPrefix, 'Ordering', 'ordering', sortField, sortType) %>
 							<th class="text-center">Action</th>
@@ -113,9 +112,6 @@
 							</td>
 							<td class="text-center"><%= index+1 %></td>
 							<td class="text-center"><%- highlightHelper(value.name, keyword) %></td>
-							<td class="text-center">
-								<%- imageHelper(folderUpload, value.avatar) %>
-							</td>
 
 							<td id="changeStatus-<%= value.id%>" class="text-center position-relative">
 								<%- statusHelper(value.status, value.id, linkPrefix) %>

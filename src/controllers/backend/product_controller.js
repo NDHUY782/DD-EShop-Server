@@ -47,9 +47,9 @@ module.exports = {
 
         let pagination = {
             totalItem: 1,
-            totalItemPerPage: 5,
+            totalItemPerPage: 9,
             currentPage: parseInt(paramsHelpers.getParam(req.query, 'page', 1)),
-            pageRange: 3
+            pageRange: 999
         }
         sort[sortField] = sortType
 
@@ -113,9 +113,9 @@ module.exports = {
 
         let pagination = {
             totalItem: 1,
-            totalItemPerPage: 5,
+            totalItemPerPage: 999999999999999999,
             currentPage: parseInt(paramsHelpers.getParam(req.query, 'page', 1)),
-            pageRange: 3
+            pageRange: 999
         }
         sort[sortField] = sortType
 
@@ -151,6 +151,7 @@ module.exports = {
     //     // })
         res.json({
             items :        data,
+            pageTitle,
             currentStatus,
             keyword,
             pagination,
@@ -182,28 +183,6 @@ module.exports = {
             categoryItems,
             groupItems
         });
-        // res.json({
-        //     items :  data,
-        //     categoryItems,
-        //     groupItems
-        // })
-    },
-    getForm_json : async (req , res , next) => {
-        // let id = paramsHelpers.getParam(req.params, 'id', '')
-
-        // let { categoryItems }          = await ProductService.getListCategory()
-        // let { groupItems }          = await ProductService.getListProductGroup()
-        // let { data, pageTitle }        = await ProductService.getForm({id})
-
-        // categoryItems.unshift({ id: 'novalue', name: 'Choose Category Product' })
-        // groupItems.unshift({ id: 'novalue', name: 'Choose Group Product' })
-
-        // res.render(`${renderName}form` , {
-        //     pageTitle,
-        //     items :  data,
-        //     categoryItems,
-        //     groupItems
-        // });
         // res.json({
         //     items :  data,
         //     categoryItems,
@@ -354,15 +333,15 @@ module.exports = {
 
                 let { data, pageTitle } = await ProductService.getForm({id})
                 
-                // res.render(`${renderName}form`, {
-                //     pageTitle,
-                //     item: data,
-                //     errorArr,
-                //     categoryItems
-                // });
-                res.json({
-                    item : data,
-                })
+                res.render(`${renderName}form`, {
+                    pageTitle,
+                    item: data,
+                    errorArr,
+                    categoryItems
+                });
+                // res.json({
+                //     item : data,
+                // })
                 return;
             }else{
                 if (typeof item !== 'undefined' && item.id !== "") { //edit

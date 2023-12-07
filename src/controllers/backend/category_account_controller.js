@@ -23,7 +23,7 @@ module.exports = {
 
         let pagination = {
             totalItem       : 1,
-            totalItemPerPage: 5,
+            totalItemPerPage: 9999999999,
             currentPage     : parseInt(paramsHelpers.getParam(req.query, 'page', 1)),
             pageRange       : 3
         }
@@ -44,6 +44,47 @@ module.exports = {
         let pageTitle = 'Category Account'
  
         res.render(`${renderName}list` , {
+            items :        data,
+            pageTitle,
+            currentStatus,
+            keyword,
+            pagination,
+            statusFilter:  statusFilter,
+            sortType,
+            sortField
+        })
+    },
+    getlist_json : async (req , res , next) => {
+        let condition = {}
+        let keyword   = paramsHelpers.getParam(req.query, 'keyword', '')
+        let currentStatus = paramsHelpers.getParam(req.params, 'status', 'all')
+        let sortField = paramsHelpers.getParam(req.session, 'sortField', 'ordering')
+        let sortType  = paramsHelpers.getParam(req.session, 'sortType', 'asc')
+        let sort = {}
+
+        let pagination = {
+            totalItem       : 1,
+            totalItemPerPage: 9999999999,
+            currentPage     : parseInt(paramsHelpers.getParam(req.query, 'page', 1)),
+            pageRange       : 3
+        }
+
+        sort[sortField] = sortType
+        
+        if (currentStatus === 'all'){
+            if(keyword !== '') condition = {name: {$regex: keyword, $options: 'i'}}
+        }else {
+            condition = {status: currentStatus, name: {$regex: keyword, $options: 'i'}}
+        }
+
+        let { data }  = await CategoryAccountService.getAll({pagination, condition, sort})
+
+        let choosedStatus = req.params.status;
+        let statusFilter = await CategoryAccountService.countAll({choosedStatus})
+
+        let pageTitle = 'Category Account'
+ 
+        res.json({
             items :        data,
             pageTitle,
             currentStatus,

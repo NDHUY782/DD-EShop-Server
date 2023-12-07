@@ -37,6 +37,9 @@ const ProductModel = new Schema({
     id_category : {
         type : String,
     },
+    id_group_category : {
+        type : String,
+    }
 },{
     timestamps : true
 })

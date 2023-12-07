@@ -3,7 +3,7 @@ const ramdomstring = require('randomstring')
 const path = require('path')
 const fs = require('fs')
 
-let uploadFile = (field, folderDes = `${__path_public}uploads/items/`, fileNameLength = 10, fileSizeMb = 5, fileExtension = 'jpeg|jpg|png|gif|webp') => {
+let uploadFile = (field, folderDes = `${__path_public}uploads/items/`, fileNameLength = 99, fileSizeMb = 99, fileExtension = 'jpeg|jpg|png|gif|webp') => {
     const storage = multer.diskStorage({
         destination: (req, file, cb) => {
           cb(null, folderDes)

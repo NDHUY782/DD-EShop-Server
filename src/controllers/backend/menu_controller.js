@@ -23,7 +23,7 @@ module.exports = {
 
         let pagination = {
             totalItem       : 1,
-            totalItemPerPage: 5,
+            totalItemPerPage: 9999999999,
             currentPage     : parseInt(paramsHelpers.getParam(req.query, 'page', 1)),
             pageRange       : 3
         }
