@@ -16,7 +16,6 @@ router.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // router.use('/authen',require('./authen'))
 router.use('/no-permission',require('./no_permission'))
 
-router.use('/' ,require('./dashboard'))
 // router.use('/',require('./dashboard'))
 
 // router.use('/rss',require('./rss'))

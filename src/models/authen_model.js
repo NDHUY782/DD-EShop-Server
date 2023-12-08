@@ -12,10 +12,6 @@ const AuthenModel = new Schema({
     password: {
         type : String,
         required: true,
-    },
-    avatar: {
-        type : String,
-        required: true,
     },  
     hoten: {
         type : String,
@@ -34,9 +30,6 @@ const AuthenModel = new Schema({
     boss: {
         type : String,
     },
-    lastDateLogin: {
-        type : Date,
-    }
     
 }, {
     timestamps : true
