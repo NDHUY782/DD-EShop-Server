@@ -16,6 +16,7 @@ const fileHelpers = require(`${__path_helpers}file`)
 const uploadAvatar = fileHelpers.upload('avatar', `${__path_public}uploads/products/`)
 
 const ProductService = require(`${__path_services}backend/product_service`);
+const ProductModel = require(`${__path_models}product_model`)
 
 module.exports = {
     getlist : async (req , res , next) => {
@@ -450,4 +451,14 @@ module.exports = {
 
     uploadAvatar: async (req , res , next) => {
     },
+    ListProductDetail: async (req,res,next )=> {
+        let data = await ProductModel.findOne({_id : req.params.id})
+        .select('name avatar status price link quantity sale_price ordering id_category id_group_category  ')
+            // console.log(data)
+            // res.render('../views/frontend/page/product_detail.ejs',{data});
+            res.json({
+                items: data
+            })
+        
+    }
 }

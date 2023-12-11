@@ -11,6 +11,7 @@ const SlugHelpers   = require(`${__path_helpers}slug`)
 const {validationResult} = require('express-validator')
 
 const CategoryService = require(`${__path_services}backend/category_service`);
+const CategoryModel = require(`${__path_models}category_model`)
 
 module.exports = {
     getlist : async (req , res , next) => {
@@ -210,5 +211,13 @@ module.exports = {
         }
 
     },
+    ListCategoryDetail: async (req,res,next )=> {
+        let data = await CategoryModel.findOne({_id : req.params.id})
+        .select('name status ordering ')
+            res.json({
+                items: data
+            })
+        
+    }
 
 }

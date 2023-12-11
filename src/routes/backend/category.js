@@ -11,6 +11,9 @@ router
 router
     .route('/api')
     .get(categoryController.getlist_json)
+router
+    .route('/api/:id')
+    .get(categoryController.ListCategoryDetail)
 
 router
     .route('/form(/:id)?')

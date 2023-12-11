@@ -14,6 +14,7 @@ const uploadAvatar = fileHelpers.upload('avatar', `${__path_public}uploads/categ
 
 
 const CategoryProductService = require(`${__path_services}backend/category_product_service`);
+const CategoryProductModel = require(`${__path_models}category_product_model`)
 
 module.exports = {
     getlist : async (req , res , next) => {
@@ -108,7 +109,14 @@ module.exports = {
             sortField
         })
     },
-
+    ListCategoryProductDetail: async (req,res,next )=> {
+        let data = await CategoryProductModel.findOne({_id : req.params.id})
+        .select('name status ordering ')
+            res.json({
+                items: data
+            })
+        
+    },
     getForm : async (req , res , next) => {
         let id            = paramsHelpers.getParam(req.params, 'id', '')
 

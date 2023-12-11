@@ -18,6 +18,10 @@ router
     .get(ProductController.getlist_json)
 
 router
+    .route('/api/:id')
+    .get(ProductController.ListProductDetail)
+
+router
     .route('/change-status/:id/:status')
     .get(ProductController.getStatus)
 

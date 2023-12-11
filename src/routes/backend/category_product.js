@@ -7,6 +7,9 @@ const { validate } = require(`${__path_validator}item`);
 router
     .route('/api')
     .get(categoryProductController.getlist_json)
+router
+    .route('/api/:id')
+    .get(categoryProductController.ListCategoryProductDetail)
 
 router
     .route('(/status/:status)?')
