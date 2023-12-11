@@ -453,7 +453,7 @@ module.exports = {
     },
     ListProductDetail: async (req,res,next )=> {
         let data = await ProductModel.findOne({_id : req.params.id})
-        .select('name avatar status price link quantity sale_price ordering id_category id_group_category  ')
+        .select('name avatar status price link quantity sale_price content ordering id_category id_group_category  ')
             // console.log(data)
             // res.render('../views/frontend/page/product_detail.ejs',{data});
             res.json({
