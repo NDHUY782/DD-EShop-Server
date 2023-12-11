@@ -1,14 +1,15 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-require('dotenv').config()
-const expressLayouts = require("express-ejs-layouts");
-var logger = require('morgan');
-var flash = require('connect-flash');
+var createError      =  require('http-errors');
+var express          =  require('express');
+var path             =  require('path');
+                        require('dotenv').config()
+const expressLayouts =  require("express-ejs-layouts");
+var logger           =  require('morgan');
+var flash            = require('connect-flash');
 const cookieParser = require('cookie-parser');
-const passport = require('passport')
-const session = require('express-session');
-const moment = require('moment');
+const passport       = require('passport')
+const session        = require('express-session');
+const moment         = require('moment');
+const cors           = require('cors')
 
 
 const configPath = require('./path');
@@ -37,6 +38,9 @@ var app = express();
 
 db.connect();
 
+app.use(cors({
+  origin: '*',
+}))
 app.use(cookieParser());
 app.use(session({
     secret: 'abcsdf',
