@@ -4,6 +4,9 @@ const ProductModel = new Schema({
     name : {
         type : String,
     },
+    masp : {
+        type : String,
+    },
     status : {
         type : String,
     },

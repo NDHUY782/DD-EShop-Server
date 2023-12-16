@@ -107,6 +107,7 @@
 								</div>
 							</th>
 							<%- sortListHelper(linkPrefix, 'Name', 'name', sortField, sortType, "name") %>
+							<th class="text-center">Mã Sp</a></th>
 							<th class="text-center">Avatar</a></th>
 							<%- sortListHelper(linkPrefix, 'Status', 'status', sortField, sortType) %>
 							<!-- <%- sortListHelper(linkPrefix, 'Ordering', 'ordering', sortField, sortType) %> -->
@@ -133,6 +134,7 @@
 							</td>
 							<!-- <td class="text-center"><%- highlightHelper(value.name, keyword) %></td> -->
 							<td class="text-center"><%- shortNameHelper(value.name)%></td>
+							<td class="text-center"><%- value.masp%></td>
 							<td class="text-center">
 							<% value.avatar.forEach( item => { %>
 									<%- imageHelper(folderUpload, item) %>
