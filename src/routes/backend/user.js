@@ -59,4 +59,8 @@ router
     .route('/reset-password')
     .post(UserController.reset_password)
 
+router
+    .route('/contact')
+    .post(UserController.contact)
+
 module.exports = router;    

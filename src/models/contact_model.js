@@ -6,7 +6,22 @@ const ContactModel = new Schema({
     },
     email : {
         type : String,
-    }
+    },
+    content : {
+        type : String,
+    },
+    firstname: {
+        type : String,
+        required: true,
+    },
+    lastname: {
+        type : String,
+        required: true,
+    },
+    mobile: {
+        type: String,
+        require:true,
+    },
 }, {
     timestamps : true
 }) 
