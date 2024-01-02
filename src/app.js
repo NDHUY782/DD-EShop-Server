@@ -38,10 +38,7 @@ var app = express();
 
 db.connect();
 
-app.use(cors({
-  origin: '*',
-  methods: ['POST','GET','DELETE','PUT','HEAD','PATCH','OPTIONS']
-}))
+app.use(cors({}))
 
 app.use("/", (req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");
