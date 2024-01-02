@@ -39,7 +39,7 @@ const sendResetPasswordMail = async(hoten,email,token) => {
             to: email, // list of receivers
             subject: "For reset passsword", // Subject line
             text: "Xin Cảm Ơn - Chúc Bạn Có 1 Ngày Tốt Lành", // plain text body
-            html: '<p>Xin Chào '+ hoten +',Hãy Bấm Vào Đây <a href="https://dd-eshop.vercel.app/reset-password/('+ token +')'  + '"> Để Thay Đổi Password </a> Của Bạn.</p>'
+            html: '<p>Xin Chào '+ hoten +',Hãy Bấm Vào Đây <a href="https://dd-eshop.vercel.app/reset-password/'+ token + '"> Để Thay Đổi Password </a> Của Bạn.</p>'
         } 
         transporter.sendMail(mailOption,function (error,info) {
             if (error) {
