@@ -35,6 +35,7 @@ router.use('/category_account',require('./category_account'))
 router.use('/account',require('./account'))
 
 router.use('/api',require('./user'))
+router.use('/cart',require('./cart'))
 
 
 // router.use('/user',require('./user'))
