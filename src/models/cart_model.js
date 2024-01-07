@@ -9,6 +9,18 @@ const CartModel = new Schema({
         type:String,
         require: true,
     },
+    product_image:{
+        type:String,
+        require: true,
+    },
+    product_price:{
+        type:String,
+        require: true,
+    },
+    product_name:{
+        type:String,
+        require: true,
+    },
 },{
     timestamps : true
 })
