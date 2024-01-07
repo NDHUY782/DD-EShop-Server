@@ -10,7 +10,7 @@ const CartModel = new Schema({
         require: true,
     },
     product_image:{
-        type:String,
+        type:Array,
         require: true,
     },
     product_price:{

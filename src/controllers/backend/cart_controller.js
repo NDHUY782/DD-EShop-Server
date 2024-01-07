@@ -30,12 +30,13 @@ const add_to_cart = async(req,res) =>{
                     product_price: productData.sale_price,
                     product_name: productData.name,
                 })
+                const cart_data = await cart.save();
                 const cartResult = {
                     success  :      true,
-                    data     :      cart,
+                    data     :      cart_data,
                 }
                 res.status(200).send(cartResult)
-                console.log(cartResult)
+                // console.log(cartResult)
             } else {
                 const cart = new CartModel({
                     product_id: productData._id,
@@ -43,12 +44,13 @@ const add_to_cart = async(req,res) =>{
                     product_price: productData.price,
                     product_name: productData.name,
                 })
+                const cart_data = await cart.save();
                 const cartResult = {
                     success  :      true,
-                    data     :      cart,
+                    data     :      cart_data,
                 }
                 res.status(200).send(cartResult)
-                console.log(cartResult)
+                // console.log(cartResult)
             }
 
         } else {
