@@ -41,6 +41,10 @@ const UserModel = new Schema({
         type:String,
         default: '',
     },
+    // cart: {
+    //     type: Schema.Types.ObjectId, 
+    //     ref: 'carts'
+    // },
 
 }, {
     timestamps : true
