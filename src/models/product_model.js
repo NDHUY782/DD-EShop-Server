@@ -22,7 +22,10 @@ const ProductModel = new Schema({
     price : {
         type : Number,
     },
-    link : {
+    link_shopee : {
+        type : String,
+    },
+    link_ytb : {
         type : String,
     },
     sale_price : {
