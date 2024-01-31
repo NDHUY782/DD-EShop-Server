@@ -54,7 +54,7 @@ module.exports = {
         if(obj.id === ''){ /// add
             pageTitle = 'Add - Form'
         }else { /// edit
-            data = await catchAsync(CategoryModel.findById(obj.id))
+            data = await CategoryModel.findById(obj.id)
             // try {
             //     data = await CategoryModel.findById(obj.id)
             //     // pageTitle = 'Edit - Form'
@@ -63,7 +63,6 @@ module.exports = {
             //   }
             // data = await CategoryModel.findById(obj.id)
             pageTitle = 'Edit - Form'
-            console.log(data);
         }
 
         return {
@@ -80,6 +79,9 @@ module.exports = {
                 slug: obj.slug,
                 content: obj.content
             });
+        return {
+            success: true,
+        }
     },
 
     addItem: async (obj) => { // (NewData add)
