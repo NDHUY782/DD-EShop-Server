@@ -189,7 +189,8 @@
             let arrAvatar = fileVal.value.split(',');
 
             arrAvatar.forEach((value) => {
-                var path = `uploads/products/${value}`
+                // var path = `uploads/products/${value}`
+                var path = value
                 var file = new File([Blob], `${value}`, {type:"image/webp", lastModified:new Date().getTime()}, 'utf-8');
                 file['status'] = "queued";
                 file['status'] = "queued";

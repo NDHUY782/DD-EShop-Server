@@ -15,6 +15,9 @@ const fileHelpers = require(`${__path_helpers}file`)
 
 const uploadAvatar = fileHelpers.upload('avatar', `${__path_public}uploads/products/`)
 
+const getBase64 = require(`${__path_helpers}image`)
+const cloudinaryStorage = require(`${__path_configs}cloudinary`)
+
 const ProductService = require(`${__path_services}backend/product_service`);
 const ProductModel = require(`${__path_models}product_model`)
 
@@ -307,7 +310,11 @@ module.exports = {
         await ProductService.deleteItem({id})
 
         avatar.forEach(item => {
-            fileHelpers.remove('src/public/uploads/products/', item)
+            const parts = item.split("/");
+            const finalPart = parts[parts.length - 1];
+            fileHelpers.remove('src/public/uploads/products/', finalPart)
+
+            cloudinaryStorage.removeCloudinary(item)
         })
 
         req.flash('warning', notify.DELETE_SUCCESS)           
@@ -351,15 +358,26 @@ module.exports = {
                         arrAvatar = item.arrAvatar.replace(item.remove_image_old, '')
                         let avatarRemove = item.remove_image_old.split(',')
                         avatarRemove.forEach(img => {
-                            fileHelpers.remove('src/public/uploads/products/',img)
+                            const parts = img.split("/");
+                            const finalPart = parts[parts.length - 1];
+                            fileHelpers.remove('src/public/uploads/products/', finalPart)
+                            
                             item.avatar = item.avatar.filter(item => item !== img)
+
+                            cloudinaryStorage.removeCloudinary(img)
                         })
                     }
 
                     if (Object.keys(req.files).length > 0){
-                        req.files.forEach((results) => {
-                            item.avatar.push(results.filename)
+                        const uploadPromises = req.files.map(async (results) => {
+                            const imageBase64 = await getBase64(results.path)
+                            const secure_url = await cloudinaryStorage
+                                .uploadCloudinary(`data:${results.mimetype};base64,${imageBase64}`, results.filename.split('.')[0])
+                            
+                            item.avatar.push(secure_url)
                         })
+
+                        await Promise.all(uploadPromises)
                     }
 
                     await ProductService.editItem(item)
@@ -372,16 +390,23 @@ module.exports = {
                 } 
                 else { // add
                     item.avatar = []
-                    req.files.forEach((results) => {
-                        item.avatar.push(results.filename)
+                    const uploadPromises = req.files.map(async (results) => {
+                        const imageBase64 = await getBase64(results.path)
+                        const secure_url = await cloudinaryStorage
+                            .uploadCloudinary(`data:${results.mimetype};base64,${imageBase64}`, results.filename.split('.')[0])
+                        
+                        item.avatar.push(secure_url)
                     })
-
+                    
+                    await Promise.all(uploadPromises)
+                    
                     item.id_category       = item.category
                     item.id_group_category = item.group
                     await ProductService.addItem(item)
 
                     req.flash('success', notify.ADD_SUCCESS)
                     res.redirect(`${linkPrefix}`)
+
                     // res.json({
                     //     notice: 'success'
                     // })
@@ -400,13 +425,21 @@ module.exports = {
                 for (let index = 0; index < id.length; index++) {
                     let {avatar}      = await ProductService.findAvatar({id: id[index]})
                     avatar.forEach(item => {
-                        fileHelpers.remove('src/public/uploads/products/', item)
+                        const parts = item.split("/");
+                        const finalPart = parts[parts.length - 1];
+                        fileHelpers.remove('src/public/uploads/products/', finalPart)
+
+                        cloudinaryStorage.removeCloudinary(item)
                     })
                 }
             } else {
                 let {avatar}          = await ProductService.findAvatar({id})
                 avatar.forEach(item => {
-                    fileHelpers.remove('src/public/uploads/products/', item)
+                    const parts = item.split("/");
+                    const finalPart = parts[parts.length - 1];
+                    fileHelpers.remove('src/public/uploads/products/', finalPart)
+
+                    cloudinaryStorage.removeCloudinary(item)
                 })
             }
             let {deletedCount}        = await ProductService.changeDeleteMultiple({id})
