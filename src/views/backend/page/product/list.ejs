@@ -112,11 +112,11 @@
 							<%- sortListHelper(linkPrefix, 'Status', 'status', sortField, sortType) %>
 							<th class="text-center">Quantity</a></th>
 							<th class="text-center">Price</a></th>
-							<th class="text-center">Link_Shopee</a></th>
-							<th class="text-center">Link_Ytb</a></th>
+							<!-- <th class="text-center">Link_Shopee</a></th> -->
+							<!-- <th class="text-center">Link_Ytb</a></th> -->
 							<th class="text-center">Sale Price</a></th>
+							<th class="text-center">Product Category</a></th>
 							<th class="text-center">Category</a></th>
-							<th class="text-center">Group</a></th>
 							<th class="text-center">Action</th>
 						</tr>
 					<% } %>
@@ -148,8 +148,8 @@
 							<td class="text-center" >
 								<%- numberHelper(value.id, value.price, linkPrefix, 'Price') %>
 							</td>
-							<td class="text-center"><%- value.link_shopee%></td>
-							<td class="text-center"><%- value.link_ytb%></td>
+							<!-- <td class="text-center"><%- value.link_shopee%></td>
+							<td class="text-center"><%- value.link_ytb%></td> -->
 							<td class="text-center" >
 								<%- numberHelper(value.id, value.sale_price, linkPrefix,'Sale Price') %>
 							</td>
