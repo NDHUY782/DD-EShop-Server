@@ -131,6 +131,7 @@ module.exports = {
         if (keyword !== '') condition.name = { $regex: keyword, $options: 'i' }
 
         let { data }  = await ProductService.getAll({condition, pagination, sort})
+        const productData = await ProductModel.find()
 
         let choosedStatus = req.params.status;
         let statusFilter = await ProductService.countAll({choosedStatus, arrIdCategory, arrIdGroup})
@@ -155,6 +156,7 @@ module.exports = {
     //     // })
         res.json({
             items :        data,
+            productData,
             pageTitle,
             currentStatus,
             keyword,
