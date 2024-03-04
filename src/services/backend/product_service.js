@@ -11,7 +11,7 @@ module.exports = {
 
         let data = await ProductModel
             .find(obj.condition)
-            .select('name avatar status price link_shopee link_ytb quantity sale_price content arrCheck ordering id_category id_group_category masp')
+            .select('name avatar status price link_shopee link_ytb quantity sale_price content arrCheck ordering id_category id_group_category masp series')
             .sort(obj.sort)
             .skip((obj.pagination.currentPage - 1) * obj.pagination.totalItemPerPage)
             .limit(obj.pagination.totalItemPerPage)
@@ -109,6 +109,8 @@ module.exports = {
     editItem: async (obj) => { // (edit item)
         await ProductModel.updateOne({ _id: obj.id }, {
             name: obj.name,
+            massp: obj.masp,
+            series: obj.series,
             status: obj.status,
             slug: obj.slug,
             ordering: obj.ordering,

@@ -486,7 +486,7 @@ module.exports = {
     },
     ListProductDetail: async (req,res,next )=> {
         let data = await ProductModel.findOne({_id : req.params.id})
-        .select('name masp avatar status price link_shopee link_ytb quantity sale_price content ordering id_category id_group_category  ')
+        .select('name masp avatar status price link_shopee link_ytb quantity sale_price content ordering id_category id_group_category series ')
             // console.log(data)
             // res.render('../views/frontend/page/product_detail.ejs',{data});
             res.json({
