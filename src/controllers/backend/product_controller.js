@@ -155,8 +155,7 @@ module.exports = {
     //     //     idGroup
     //     // })
         res.json({
-            items :        data,
-            productData,
+            items :        productData,
             pageTitle,
             currentStatus,
             keyword,
