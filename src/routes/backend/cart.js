@@ -6,9 +6,9 @@ const CartController = require('../../controllers/backend/cart_controller')
 router
     .route('/api/:user_id')
     .get(CartController.listCart)
-router
-    .route('/api')
-    .post(CartController.add_to_cart)
+// router
+//     .route('/api')
+//     .post(CartController.add_to_cart)
 router
     .route('/api/:user_id/:product_id')
     .post(CartController.add_to_cart)

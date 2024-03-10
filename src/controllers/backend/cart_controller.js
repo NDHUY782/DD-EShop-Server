@@ -48,14 +48,22 @@ const add_to_cart = async(req,res) =>{
             } else {
                 product_price= productData.price
             }
+            const quantity = req.body.quantity
             const cartData = await CartModel.findOne({user_id: user_id, product_id: productID})
             if (cartData) {
-                // console.log(cartData)
-                await cartData.updateOne({ 
+                if (quantity == null) {
+                    await cartData.updateOne({ 
                         $set: {
-                            quantity: cartData.quantity +1
+                            quantity: cartData.quantity + 1
                         }
                 })
+                } else {
+                    await cartData.updateOne({ 
+                        $set: {
+                            quantity: cartData.quantity + quantity
+                        }
+                })
+                }
                 res.status(202).send({success: true,msg:'thành công'})
                 // if (cartData.user_id === userData._id && cartData.product_id === productData._id) {
                 //     const  sessionUser= userData._id
@@ -80,6 +88,7 @@ const add_to_cart = async(req,res) =>{
                     product_image:   productData.avatar,
                     product_price:   product_price,
                     product_name :   productData.name,
+                    quantity     :   req.body.quantity
                 })
                 cart_obj.save()
                 res.status(202).send({success: true,msg:'thành công',data:cart_obj})
