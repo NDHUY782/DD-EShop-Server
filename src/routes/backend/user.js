@@ -42,6 +42,9 @@ router
 router
     .route('/login')
     .post(UserController.user_login)
+router
+    .route('/admin/login')
+    .post(UserController.admin_login)
 
 router
     .route('/test')
