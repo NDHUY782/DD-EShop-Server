@@ -37,7 +37,7 @@ const upload = multer({storage:storage});
 
 router
     .route('/register')
-    .post(upload.single('image') ,UserController.register_user)
+    .post(UserController.register_user)
 
 router
     .route('/login')
