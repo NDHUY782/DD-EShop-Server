@@ -85,7 +85,6 @@ const add_to_cart = async(req,res) =>{
                 })
                 cart_obj.save()
                 res.status(202).send({success: true,msg:'thành công',data:cart_obj})
-                console.log(cart_obj)
             }
         } else {
                 res.status(400).send({success: false,msg:error.message})

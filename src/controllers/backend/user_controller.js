@@ -106,15 +106,15 @@ const register_user = async (req,res) => {
     try {
         const spassword = await securePassword(req.body.password)
 
-        const imageBase64 = await getBase64(req.file.path)
-        const secure_url = await cloudinaryStorage
-            .uploadCloudinary(`data:${req.file.mimetype};base64,${imageBase64}`, req.file.filename.split('.')[0])
+        // const imageBase64 = await getBase64(req.file.path)
+        // const secure_url = await cloudinaryStorage
+        //     .uploadCloudinary(`data:${req.file.mimetype};base64,${imageBase64}`, req.file.filename.split('.')[0])
 
         const user = new UserModel({
             username : req.body.username,
             password : spassword,
             email    : req.body.email,
-            image    : secure_url,
+            // image    : secure_url,
             mobile   : req.body.mobile,
             hoten    : req.body.hoten,
         })
